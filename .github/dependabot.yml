@@ -1,0 +1,12 @@
+version: 2
+
+updates:
+- package-ecosystem: npm
+  directory: "cli/"
+  schedule:
+    interval: daily
+  versioning-strategy: increase
+  open-pull-requests-limit: 99
+  labels:
+  - "dependencies"
+  - "cli"
