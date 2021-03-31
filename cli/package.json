@@ -3,6 +3,7 @@
   "version": "1.7.337",
   "description": "The Jake Jarvis CLI",
   "homepage": "https://jarv.is/cli/",
+  "repository": "https://github.com/jakejarvis/jakejarvis.git",
   "bugs": "https://github.com/jakejarvis/jakejarvis/issues",
   "license": "MIT",
   "keywords": [
@@ -16,10 +17,6 @@
     "name": "Jake Jarvis",
     "email": "jake@jarv.is",
     "url": "https://jarv.is/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jakejarvis/jakejarvis.git"
   },
   "engines": {
     "node": "^10 || ^12 || >=14"
