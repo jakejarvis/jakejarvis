@@ -20,10 +20,9 @@ $ npx @jakejarvis/cli
 
                  Front-End Developer • Bostonian • Freelance Open-Sourcerer
 
-❯ 🌎 Website           jarv.is
+❯ 🏡 Website           jarv.is
 ❯ 📬 Email             jake@jarv.is
 ❯ 🐦 Twitter           @jakejarvis
 ❯ 📱 SMS               +1 (617) 917-3737
-❯ 👔 Résumé            jrvs.io/resume
 ❯ 🔐 PGP Key           jrvs.io/pubkey (2B0C 9CF2 51E6 9A39)
 ```

@@ -1,6 +1,6 @@
 {
   "name": "@jakejarvis/cli",
-  "version": "1.7.337",
+  "version": "1.8.337",
   "description": "The Jake Jarvis CLI",
   "homepage": "https://jarv.is/cli/",
   "repository": "https://github.com/jakejarvis/jakejarvis.git",
@@ -19,7 +19,7 @@
     "url": "https://jarv.is/"
   },
   "engines": {
-    "node": "^10 || ^12 || >=14"
+    "node": "^12 || ^14 || >=16"
   },
   "files": [
     "src/*"
@@ -28,22 +28,22 @@
     "jakejarvis": "./src/cli.js"
   },
   "scripts": {
-    "test": "eslint ./src/*.js",
-    "cli": "node ./src/cli.js"
+    "cli": "node ./src/cli.js",
+    "test": "eslint ./src/*.js"
   },
   "dependencies": {
     "import-jsx": "^4.0.0",
     "ink": "^3.0.8",
-    "ink-big-text": "^1.1.0",
+    "ink-big-text": "^1.2.0",
     "ink-gradient": "^2.0.0",
     "ink-select-input": "^4.2.0",
     "meow": "^9.0.0",
-    "open": "^7.3.1",
+    "open": "^8.2.0",
     "react": "^16.x"
   },
   "devDependencies": {
-    "eslint": "^7.23.0",
-    "eslint-plugin-react": "^7.23.1",
+    "eslint": "^7.27.0",
+    "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "eslintConfig": {

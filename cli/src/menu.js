@@ -27,7 +27,7 @@ const createItems = items => {
 
 const items = createItems([
   {
-    label: '🌎  Website',
+    label: '🏡  Website',
     url: 'https://jarv.is/'
   },
   {
@@ -49,10 +49,6 @@ const items = createItems([
   {
     label: '🔐  PGP Key',
     url: 'https://jrvs.io/pubkey'
-  },
-  {
-    label: '👔  Résumé (PDF)',
-    url: 'https://jrvs.io/resume'
   },
   {
     label: '🐼  Panda Party',
