@@ -22,7 +22,7 @@
     "node": "^12 || ^14 || >=16"
   },
   "files": [
-    "dist/index.js"
+    "dist"
   ],
   "bin": {
     "jakejarvis": "./dist/index.js"
