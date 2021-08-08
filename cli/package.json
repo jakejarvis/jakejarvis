@@ -22,29 +22,42 @@
     "node": "^12 || ^14 || >=16"
   },
   "files": [
-    "src/*"
+    "dist/index.js"
   ],
   "bin": {
-    "jakejarvis": "./src/cli.js"
+    "jakejarvis": "./dist/index.js"
   },
   "scripts": {
-    "cli": "node ./src/cli.js",
-    "test": "eslint ./src/*.js"
+    "clean": "rimraf dist",
+    "compile": "babel index.js -o dist/babel.js && ncc build dist/babel.js -o dist && rimraf dist/babel.js",
+    "run": "yarn compile && node dist/index.js",
+    "test": "eslint ./src/*.js",
+    "prepublishOnly": "yarn clean && yarn compile"
   },
-  "dependencies": {
-    "import-jsx": "^4.0.0",
-    "ink": "^3.0.8",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "@vercel/ncc": "^0.29.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "ink": "^3.0.9",
     "ink-big-text": "^1.2.0",
     "ink-gradient": "^2.0.0",
     "ink-select-input": "^4.2.0",
     "meow": "^9.0.0",
-    "open": "^8.2.0",
-    "react": "^16.x"
+    "open": "^8.2.1",
+    "react": "^16.x",
+    "rimraf": "^3.0.2"
   },
-  "devDependencies": {
-    "eslint": "^7.27.0",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
   },
   "eslintConfig": {
     "extends": [

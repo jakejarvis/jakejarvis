@@ -1,11 +1,19 @@
+#!/usr/bin/env node
+
 'use strict';
 
+const meow = require('meow');
 const React = require('react');
-const {Box, Text} = require('ink');
+const {render, Box, Text} = require('ink');
 const BigText = require('ink-big-text');
 const Gradient = require('ink-gradient');
 const SelectInput = require('ink-select-input').default;
 const open = require('open');
+
+meow(`
+  Usage
+    $ npx @jakejarvis/cli
+`);
 
 const handleSelect = item => {
   if (item.url) {
@@ -62,7 +70,7 @@ const items = createItems([
   }
 ]);
 
-const menu = () => (
+const Menu = () => (
   <Box flexDirection="column">
     <Gradient name="pastel">
       <BigText text="Jake Jarvis"/>
@@ -74,4 +82,4 @@ const menu = () => (
   </Box>
 );
 
-module.exports = menu;
+render(<Menu />);
