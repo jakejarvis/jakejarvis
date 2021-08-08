@@ -31,7 +31,7 @@
     "clean": "rimraf dist",
     "compile": "babel index.js -o dist/babel.js && ncc build dist/babel.js -o dist && rimraf dist/babel.js",
     "run": "yarn compile && node dist/index.js",
-    "test": "eslint ./src/*.js",
+    "lint": "eslint index.js",
     "prepublishOnly": "yarn clean && yarn compile"
   },
   "dependencies": {},
