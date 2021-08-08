@@ -2,18 +2,12 @@
 
 'use strict';
 
-const meow = require('meow');
 const React = require('react');
 const {render, Box, Text} = require('ink');
 const BigText = require('ink-big-text');
 const Gradient = require('ink-gradient');
 const SelectInput = require('ink-select-input').default;
 const open = require('open');
-
-meow(`
-  Usage
-    $ npx @jakejarvis/cli
-`);
 
 const handleSelect = item => {
   if (item.url) {
