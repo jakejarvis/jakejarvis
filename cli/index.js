@@ -67,12 +67,12 @@ const items = createItems([
 const Menu = () => (
   <Box flexDirection="column">
     <Gradient name="pastel">
-      <BigText text="Jake Jarvis"/>
+      <BigText text="Jake Jarvis" />
     </Gradient>
-    <Box marginBottom={1}>
-    <Text>                 Front-End Developer • Bostonian • Freelance Open-Sourcerer</Text>
+    <Box marginLeft={16} marginBottom={1}>
+      <Text>Front-End Developer • Bostonian • Freelance Open-Sourcerer</Text>
     </Box>
-    <SelectInput items={items} onSelect={handleSelect}/>
+    <SelectInput items={items} onSelect={handleSelect} />
   </Box>
 );
 
