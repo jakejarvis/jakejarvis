@@ -1,6 +1,6 @@
 {
   "name": "@jakejarvis/cli",
-  "version": "1.10.337",
+  "version": "1.11.337",
   "description": "The Jake Jarvis CLI",
   "homepage": "https://jarv.is/cli/",
   "repository": "https://github.com/jakejarvis/jakejarvis.git",
@@ -22,7 +22,7 @@
     "node": "^12 || ^14 || >=16"
   },
   "files": [
-    "dist"
+    "dist/index.js"
   ],
   "bin": {
     "jakejarvis": "./dist/index.js"
