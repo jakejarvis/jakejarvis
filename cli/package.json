@@ -2,10 +2,18 @@
   "name": "@jakejarvis/cli",
   "version": "1.11.337",
   "description": "The Jake Jarvis CLI",
-  "homepage": "https://jarv.is/cli/",
-  "repository": "https://github.com/jakejarvis/jakejarvis.git",
-  "bugs": "https://github.com/jakejarvis/jakejarvis/issues",
   "license": "MIT",
+  "homepage": "https://jarv.is/cli/",
+  "author": {
+    "name": "Jake Jarvis",
+    "email": "jake@jarv.is",
+    "url": "https://jarv.is/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakejarvis/jakejarvis.git",
+    "directory": "cli"
+  },
   "keywords": [
     "cli",
     "jakejarvis",
@@ -13,11 +21,6 @@
     "portfolio",
     "useless"
   ],
-  "author": {
-    "name": "Jake Jarvis",
-    "email": "jake@jarv.is",
-    "url": "https://jarv.is/"
-  },
   "engines": {
     "node": "^12 || ^14 || >=16"
   },
@@ -29,10 +32,12 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "compile": "babel index.js -o dist/babel.js && ncc build dist/babel.js -o dist -m && rimraf dist/babel.js",
-    "run": "yarn compile && node dist/index.js",
+    "babel": "babel index.js -o dist/unbundled.js",
+    "ncc": "ncc build dist/unbundled.js -m -o dist",
+    "build": "run-s clean babel ncc",
+    "run": "yarn build && node dist/index.js",
     "lint": "eslint index.js",
-    "prepublishOnly": "yarn clean && yarn compile"
+    "prepublishOnly": "run-s lint build"
   },
   "dependencies": {},
   "devDependencies": {
@@ -48,6 +53,7 @@
     "ink-big-text": "^1.2.0",
     "ink-gradient": "^2.0.0",
     "ink-select-input": "^4.2.0",
+    "npm-run-all": "^4.1.5",
     "open": "^8.2.1",
     "react": "^16.x",
     "rimraf": "^3.0.2"
