@@ -18,8 +18,7 @@ $ npx @jakejarvis/cli
 ## Built with
 
 - [ink](https://github.com/vadimdemedes/ink) - React for interactive command-line apps
-- [meow](https://github.com/sindresorhus/meow) - CLI helper
 
 ## License
 
-MIT © [Jake Jarvis](https://jarv.is/), [Sindre Sorhus](https://sindresorhus.com)
+MIT © [Jake Jarvis](https://jarv.is/)
