@@ -1,6 +1,6 @@
 {
   "name": "@jakejarvis/cli",
-  "version": "1.12.337",
+  "version": "1.13.337",
   "description": "The Jake Jarvis CLI",
   "license": "MIT",
   "homepage": "https://jarv.is/cli/",
@@ -36,7 +36,7 @@
     "ncc": "ncc build dist/unbundled.js -m -o dist",
     "build": "run-s clean babel ncc",
     "run": "yarn build && node dist/index.js",
-    "lint": "eslint index.js",
+    "lint": "eslint .",
     "prepublishOnly": "run-s lint build"
   },
   "dependencies": {},
@@ -45,6 +45,7 @@
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
+    "@jakejarvis/eslint-config": "*",
     "@vercel/ncc": "^0.30.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.25.1",
@@ -66,12 +67,12 @@
   },
   "eslintConfig": {
     "extends": [
-      "eslint:recommended",
+      "@jakejarvis/eslint-config",
       "plugin:react/recommended",
       "plugin:react-hooks/recommended"
     ],
     "parserOptions": {
-      "ecmaVersion": 2017,
+      "ecmaVersion": 2018,
       "sourceType": "module"
     },
     "env": {
@@ -82,6 +83,9 @@
       "react": {
         "version": "detect"
       }
-    }
+    },
+    "ignorePatterns": [
+      "dist/**"
+    ]
   }
 }

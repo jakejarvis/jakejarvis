@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-'use strict';
+"use strict";
 
-const React = require('react');
-const {render, Box, Text} = require('ink');
-const BigText = require('ink-big-text');
-const Gradient = require('ink-gradient');
-const SelectInput = require('ink-select-input').default;
-const open = require('open');
+const React = require("react");
+const { render, Box, Text } = require("ink");
+const BigText = require("ink-big-text");
+const Gradient = require("ink-gradient");
+const SelectInput = require("ink-select-input").default;
+const open = require("open");
 
-const handleSelect = item => {
+const handleSelect = (item) => {
   if (item.url) {
     open(item.url);
   }
@@ -19,7 +19,7 @@ const handleSelect = item => {
   }
 };
 
-const createItems = items => {
+const createItems = (items) => {
   for (const item of items) {
     item.key = item.url || item.label;
   }
@@ -29,39 +29,39 @@ const createItems = items => {
 
 const items = createItems([
   {
-    label: '🏡  Website',
-    url: 'https://jarv.is/'
+    label: "🏡  Website",
+    url: "https://jarv.is/",
   },
   {
-    label: '📝  Blog',
-    url: 'https://jarv.is/notes/'
+    label: "📝  Blog",
+    url: "https://jarv.is/notes/",
   },
   {
-    label: '💾  GitHub',
-    url: 'https://github.com/jakejarvis'
+    label: "💾  GitHub",
+    url: "https://github.com/jakejarvis",
   },
   {
-    label: '🐦  Twitter',
-    url: 'https://twitter.com/intent/user?screen_name=jakejarvis'
+    label: "🐦  Twitter",
+    url: "https://twitter.com/intent/user?screen_name=jakejarvis",
   },
   {
-    label: '📬  Email',
-    url: 'mailto:jake@jarv.is'
+    label: "📬  Email",
+    url: "mailto:jake@jarv.is",
   },
   {
-    label: '🔐  PGP Key',
-    url: 'https://jrvs.io/pubkey'
+    label: "🔐  PGP Key",
+    url: "https://jrvs.io/pubkey",
   },
   {
-    label: '🐼  Panda Party',
-    url: 'https://nationalzoo.si.edu/webcams/panda-cam#maincontent'
+    label: "🐼  Panda Party",
+    url: "https://nationalzoo.si.edu/webcams/panda-cam#maincontent",
   },
   {
-    label: '🚪  Quit',
+    label: "🚪  Quit",
     action() {
       process.exit();
-    }
-  }
+    },
+  },
 ]);
 
 const Menu = () => (
