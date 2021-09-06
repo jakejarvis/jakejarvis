@@ -2,7 +2,6 @@
 
 "use strict";
 
-const React = require("react");
 const { render, Box, Text } = require("ink");
 const BigText = require("ink-big-text");
 const Gradient = require("ink-gradient");
