@@ -46,7 +46,7 @@
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "fs-extra": "^10.0.0",
-    "ink": "^3.0.9",
+    "ink": "^3.2.0",
     "ink-big-text": "^1.2.0",
     "ink-gradient": "^2.0.0",
     "ink-select-input": "^4.2.0",
