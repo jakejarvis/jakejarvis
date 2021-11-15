@@ -14,16 +14,6 @@
     "url": "https://github.com/jakejarvis/jakejarvis.git",
     "directory": "cli"
   },
-  "keywords": [
-    "cli",
-    "jakejarvis",
-    "jarvis",
-    "portfolio",
-    "useless"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
   "files": [
     "dist"
   ],
@@ -33,26 +23,29 @@
   "scripts": {
     "build": "node build.js",
     "run": "yarn build && node dist/index.js",
-    "prepublishOnly": "yarn build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
-    "@jakejarvis/eslint-config": "*",
+    "@jakejarvis/eslint-config": "github:jakejarvis/eslint-config#main",
     "@vercel/ncc": "^0.31.1",
-    "eslint": "^7.32.0",
+    "eslint": "^8.2.0",
     "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "fs-extra": "^10.0.0",
     "ink": "^3.2.0",
     "ink-big-text": "^1.2.0",
     "ink-gradient": "^2.0.0",
-    "ink-select-input": "^4.2.0",
+    "ink-select-input": "^4.2.1",
     "open": "^8.4.0",
     "pretty-bytes": "^5.6.0",
     "react": "^17.0.2"
+  },
+  "engines": {
+    "node": ">=10"
   },
   "eslintConfig": {
     "extends": [
@@ -78,5 +71,15 @@
       "tmp/**",
       "dist/**"
     ]
-  }
+  },
+  "volta": {
+    "node": "16.13.0"
+  },
+  "keywords": [
+    "cli",
+    "jakejarvis",
+    "jarvis",
+    "portfolio",
+    "useless"
+  ]
 }
