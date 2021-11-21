@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-"use strict";
-
 const { render, Box, Text } = require("ink");
 const BigText = require("ink-big-text");
 const Gradient = require("ink-gradient");
@@ -45,7 +43,7 @@ const items = createItems([
   },
   {
     label: "📬  Email",
-    url: "mailto:jake@jarv.is",
+    url: "https://jarv.is/contact/",
   },
   {
     label: "🔐  PGP Key",
@@ -64,14 +62,18 @@ const items = createItems([
 ]);
 
 const Menu = () => (
-  <Box flexDirection="column">
-    <Gradient name="pastel">
-      <BigText text="Jake Jarvis" />
-    </Gradient>
-    <Box marginLeft={16} marginBottom={1}>
-      <Text>Front-End Developer • Bostonian • Freelance Open-Sourcerer</Text>
+  <Box flexDirection="column" marginTop={1}>
+    <Box flexDirection="column" alignItems="center">
+      <Gradient name="pastel">
+        <BigText text="Jake Jarvis" font="simple" space={false} />
+      </Gradient>
+      <Box marginY={1}>
+        <Text>Front-End Developer • Bostonian • Freelance Open-Sourcerer</Text>
+      </Box>
     </Box>
-    <SelectInput items={items} onSelect={handleSelect} />
+    <Box marginLeft={1}>
+      <SelectInput items={items} onSelect={handleSelect} />
+    </Box>
   </Box>
 );
 

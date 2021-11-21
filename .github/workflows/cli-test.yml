@@ -3,27 +3,27 @@ name: 'CLI: Tests'
 on:
   push:
     branches:
-    - main
+      - main
     paths:
-    - 'cli/**'
+      - 'cli/**'
   pull_request:
     branches:
-    - main
+      - main
     paths:
-    - 'cli/**'
+      - 'cli/**'
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 16.x
-    - run: |
-        yarn install --frozen-lockfile
-        yarn lint
-        yarn build
-      working-directory: ./cli
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+      - run: |
+          yarn install --frozen-lockfile
+          yarn lint
+          yarn build
+        working-directory: ./cli
