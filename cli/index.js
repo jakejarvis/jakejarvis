@@ -38,16 +38,20 @@ const items = createItems([
     url: "https://github.com/jakejarvis",
   },
   {
-    label: "🐦  Twitter",
-    url: "https://twitter.com/intent/user?screen_name=jakejarvis",
-  },
-  {
     label: "📬  Email",
     url: "https://jarv.is/contact/",
   },
   {
+    label: "🐦  Twitter",
+    url: "https://twitter.com/intent/user?screen_name=jakejarvis",
+  },
+  {
     label: "🔐  PGP Key",
     url: "https://jrvs.io/pubkey",
+  },
+  {
+    label: "💻  Uses",
+    url: "https://jarv.is/uses/",
   },
   {
     label: "🐼  Panda Party",
