@@ -9,7 +9,7 @@ import ncc from "@vercel/ncc";
 import prettyBytes from "pretty-bytes";
 
 // prepare some paths
-const inputFile = path.join(process.cwd(), "index.cjs");
+const inputFile = path.join(process.cwd(), "index.jsx");
 const outputDir = path.join(process.cwd(), "dist");
 
 // run code through babel
