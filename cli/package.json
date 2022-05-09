@@ -15,7 +15,8 @@
     "directory": "cli"
   },
   "files": [
-    "dist"
+    "dist/index.cjs",
+    "dist/xdg-open"
   ],
   "bin": {
     "jakejarvis": "./dist/index.cjs"
@@ -33,13 +34,14 @@
     "@babel/preset-react": "^7.16.7",
     "@jakejarvis/eslint-config": "*",
     "@vercel/ncc": "^0.33.4",
+    "cpy": "^9.0.1",
     "eslint": "^8.15.0",
     "eslint-plugin-react": "^7.29.4",
-    "fs-extra": "^10.1.0",
     "ink": "^3.2.0",
     "ink-big-text": "^1.2.0",
     "ink-gradient": "^2.0.0",
     "ink-select-input": "^4.2.1",
+    "mkdirp": "^1.0.4",
     "open": "^8.4.0",
     "pretty-bytes": "^6.0.0",
     "react": "^18.1.0",

@@ -1,7 +1,10 @@
 import path from "path";
-import fs from "fs-extra";
+import { statSync } from "fs";
+import { writeFile } from "fs/promises";
+import cpy from "cpy";
+import mkdirp from "mkdirp";
+import { transformFileSync } from "@babel/core";
 import { temporaryDirectoryTask } from "tempy";
-import { transformFileAsync } from "@babel/core";
 import ncc from "@vercel/ncc";
 import prettyBytes from "pretty-bytes";
 
@@ -10,7 +13,7 @@ const inputFile = path.join(process.cwd(), "index.cjs");
 const outputDir = path.join(process.cwd(), "dist");
 
 // run code through babel
-const { code: babelCode } = await transformFileAsync(inputFile, {
+const { code: babelCode } = transformFileSync(inputFile, {
   presets: [
     [
       "@babel/preset-react",
@@ -22,40 +25,36 @@ const { code: babelCode } = await transformFileAsync(inputFile, {
   sourceType: "script", // we're outputting CJS, even though this package is technically ESM
 });
 
+// this temporary directory will be deleted automatically once the inner function is done
 await temporaryDirectoryTask(async (tempPath) => {
-  // save babel-ified code to a temporary file -- unfortunately, we can't pipe this code directly to ncc below
-  await fs.writeFile(path.join(tempPath, "babel.cjs"), babelCode);
+  // save babel-ified code above to a temporary file -- unfortunately, we can't pipe this code directly into to ncc
+  const babelFile = path.join(tempPath, "index.cjs");
+  await writeFile(babelFile, babelCode);
 
   // hacky warning: ncc needs the node_modules we want to bundle next to the input file, so copy them from here
-  await fs.copy(path.join(process.cwd(), "node_modules"), path.join(tempPath, "node_modules"));
+  await cpy("node_modules/**", path.join(tempPath, "node_modules"));
 
   // compile for distribution with ncc
-  const { code, assets } = await ncc(path.join(tempPath, "babel.cjs"), {
+  const { code, assets } = await ncc(babelFile, {
     cache: false,
     sourceMap: false,
     minify: true,
     debugLog: true,
-    assetBuilds: true,
   });
 
-  // remove anything leftover from previous builds
-  await fs.emptyDir(outputDir);
+  // ensure ./dist exists
+  await mkdirp(outputDir);
 
-  // write final build to ./dist
+  // write final build to ./dist and make it executable
   await Promise.all([
-    fs.outputFile(path.join(outputDir, "index.cjs"), code),
-    // TODO: figure out if script from 'open' module is really necessary
-    fs.outputFile(path.join(outputDir, "xdg-open"), assets["xdg-open"].source),
-  ]);
-
-  // make everything executable
-  await Promise.all([
-    fs.chmod(path.join(outputDir, "index.cjs"), 0o775),
-    fs.chmod(path.join(outputDir, "xdg-open"), 0o775),
+    writeFile(path.join(outputDir, "index.cjs"), code, { mode: 0o755 }),
+    // TODO: figure out if bundling this script from 'open' module is really necessary?
+    // https://linux.die.net/man/1/xdg-open
+    writeFile(path.join(outputDir, "xdg-open"), assets["xdg-open"].source, {  mode: 0o755 }),
   ]);
 });
 
 // quick logging of resulting filesizes
 console.log("🎉 Success!");
-console.log(`dist/index.cjs\t${prettyBytes((await fs.stat(path.join(outputDir, "index.cjs"))).size)}`);
-console.log(`dist/xdg-open\t${prettyBytes((await fs.stat(path.join(outputDir, "xdg-open"))).size)}`);
+console.log(`dist/index.cjs\t${prettyBytes((statSync(path.join(outputDir, "index.cjs"))).size)}`);
+console.log(`dist/xdg-open\t${prettyBytes((statSync(path.join(outputDir, "xdg-open"))).size)}`);
