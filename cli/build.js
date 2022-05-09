@@ -1,54 +1,61 @@
-const path = require("path");
-const fs = require("fs").promises;
-const babel = require("@babel/core");
-const ncc = require("@vercel/ncc");
-const prettyBytes = require("pretty-bytes");
+import path from "path";
+import fs from "fs-extra";
+import { temporaryDirectoryTask } from "tempy";
+import { transformFileAsync } from "@babel/core";
+import ncc from "@vercel/ncc";
+import prettyBytes from "pretty-bytes";
 
-(async () => {
-  // prepare some paths
-  const tempDir = path.join(__dirname, "tmp");
-  const distDir = path.join(__dirname, "dist");
+// prepare some paths
+const inputFile = path.join(process.cwd(), "index.cjs");
+const outputDir = path.join(process.cwd(), "dist");
 
-  // remove anything leftover from previous builds
-  await fs.rm(tempDir, { recursive: true, force: true });
-  await fs.rm(distDir, { recursive: true, force: true });
-
-  // run code through babel
-  const { code: babelCode } = await babel.transformFileAsync(path.join(__dirname, "index.js"), {
-    presets: [
-      [
-        "@babel/preset-react",
-        {
-          runtime: "automatic",
-        },
-      ],
+// run code through babel
+const { code: babelCode } = await transformFileAsync(inputFile, {
+  presets: [
+    [
+      "@babel/preset-react",
+      {
+        runtime: "automatic",
+      },
     ],
-  });
+  ],
+  sourceType: "script", // we're outputting CJS, even though this package is technically ESM
+});
 
-  // save babelified code to a file -- unfortunately, we can't pipe this code directly to ncc below
-  await fs.mkdir(tempDir);
-  await fs.writeFile(path.join(tempDir, "babel.js"), babelCode);
+await temporaryDirectoryTask(async (tempPath) => {
+  // save babel-ified code to a temporary file -- unfortunately, we can't pipe this code directly to ncc below
+  await fs.writeFile(path.join(tempPath, "babel.cjs"), babelCode);
+
+  // hacky warning: ncc needs the node_modules we want to bundle next to the input file, so copy them from here
+  await fs.copy(path.join(process.cwd(), "node_modules"), path.join(tempPath, "node_modules"));
 
   // compile for distribution with ncc
-  const { code, assets } = await ncc(path.join(tempDir, "babel.js"), {
+  const { code, assets } = await ncc(path.join(tempPath, "babel.cjs"), {
     cache: false,
     sourceMap: false,
     minify: true,
     debugLog: true,
+    assetBuilds: true,
   });
 
-  // write final build to ./dist and make executable
-  await fs.mkdir(distDir);
-  await fs.writeFile(path.join(distDir, "index.js"), code);
-  await fs.writeFile(path.join(distDir, "xdg-open"), assets["xdg-open"].source); // TODO: external script from 'open' module
-  await fs.chmod(path.join(distDir, "index.js"), 0o775);
-  await fs.chmod(path.join(distDir, "xdg-open"), 0o775);
+  // remove anything leftover from previous builds
+  await fs.emptyDir(outputDir);
 
-  // quick logging of resulting filesize
-  console.log("✅ Success!");
-  console.log(`dist/index.js\t${prettyBytes((await fs.stat(path.join(distDir, "index.js"))).size)}`);
-  console.log(`dist/xdg-open\t${prettyBytes((await fs.stat(path.join(distDir, "xdg-open"))).size)}`);
+  // write final build to ./dist
+  await Promise.all([
+    fs.outputFile(path.join(outputDir, "index.cjs"), code),
+    // TODO: figure out if script from 'open' module is really necessary
+    fs.outputFile(path.join(outputDir, "xdg-open"), assets["xdg-open"].source),
+  ]);
 
-  // clean up temp files
-  await fs.rm(tempDir, { recursive: true, force: true });
-})();
+  // make everything executable
+  await Promise.all([
+    fs.chmod(path.join(outputDir, "index.cjs"), 0o775),
+    fs.chmod(path.join(outputDir, "xdg-open"), 0o775),
+  ]);
+});
+
+// quick logging of resulting filesizes
+console.log("🎉 Success!");
+console.log(`dist/index.cjs\t${prettyBytes((await fs.stat(path.join(outputDir, "index.cjs"))).size)}`);
+console.log(`dist/xdg-open\t${prettyBytes((await fs.stat(path.join(outputDir, "xdg-open"))).size)}`);

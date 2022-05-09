@@ -18,12 +18,13 @@
     "dist"
   ],
   "bin": {
-    "jakejarvis": "./dist/index.js"
+    "jakejarvis": "./dist/index.cjs"
   },
+  "type": "module",
   "scripts": {
     "build": "node build.js",
-    "run": "yarn build && node dist/index.js",
-    "lint": "eslint .",
+    "run": "yarn build && node dist/index.cjs",
+    "lint": "eslint . --ext js,cjs",
     "prepublishOnly": "yarn build"
   },
   "dependencies": {},
@@ -34,13 +35,15 @@
     "@vercel/ncc": "^0.33.4",
     "eslint": "^8.15.0",
     "eslint-plugin-react": "^7.29.4",
+    "fs-extra": "^10.1.0",
     "ink": "^3.2.0",
     "ink-big-text": "^1.2.0",
     "ink-gradient": "^2.0.0",
     "ink-select-input": "^4.2.1",
     "open": "^8.4.0",
-    "pretty-bytes": "^5.6.0",
-    "react": "^18.1.0"
+    "pretty-bytes": "^6.0.0",
+    "react": "^18.1.0",
+    "tempy": "^3.0.0"
   },
   "engines": {
     "node": ">=10"
@@ -52,7 +55,7 @@
       "plugin:react/jsx-runtime"
     ],
     "parserOptions": {
-      "ecmaVersion": 2018,
+      "ecmaVersion": "latest",
       "sourceType": "module"
     },
     "env": {
