@@ -28,11 +28,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.17.8",
+    "@babel/core": "^7.17.10",
     "@babel/preset-react": "^7.16.7",
     "@jakejarvis/eslint-config": "*",
-    "@vercel/ncc": "^0.33.3",
-    "eslint": "^8.11.0",
+    "@vercel/ncc": "^0.33.4",
+    "eslint": "^8.15.0",
     "eslint-plugin-react": "^7.29.4",
     "ink": "^3.2.0",
     "ink-big-text": "^1.2.0",
@@ -40,7 +40,7 @@
     "ink-select-input": "^4.2.1",
     "open": "^8.4.0",
     "pretty-bytes": "^5.6.0",
-    "react": "^17.0.2"
+    "react": "^18.1.0"
   },
   "engines": {
     "node": ">=10"
