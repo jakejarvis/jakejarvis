@@ -31,7 +31,7 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.17.10",
-    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-react": "^7.17.12",
     "@jakejarvis/eslint-config": "*",
     "@vercel/ncc": "^0.33.4",
     "cpy": "^9.0.1",
