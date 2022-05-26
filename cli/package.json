@@ -33,7 +33,7 @@
     "@babel/core": "^7.17.10",
     "@babel/preset-react": "^7.16.7",
     "@jakejarvis/eslint-config": "*",
-    "@vercel/ncc": "^0.33.4",
+    "@vercel/ncc": "^0.34.0",
     "cpy": "^9.0.1",
     "eslint": "^8.15.0",
     "eslint-plugin-react": "^7.29.4",
