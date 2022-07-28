@@ -6,6 +6,9 @@ updates:
     schedule:
       interval: daily
     versioning-strategy: increase
+    ignore:
+      - dependency-name: "@jakejarvis/eslint-config"
+      - dependency-name: "@types/*"
     open-pull-requests-limit: 99
     labels:
       - "dependencies"
