@@ -47,7 +47,7 @@ const items = createItems([
   },
   {
     label: "🔐  PGP Key",
-    url: "https://jrvs.io/pubkey",
+    url: "https://jrvs.io/key",
   },
   {
     label: "💻  Uses",

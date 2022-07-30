@@ -22,5 +22,5 @@ $ npx @jakejarvis/cli
 ❯ 📬 Email             jake@jarv.is
 ❯ 🐦 Twitter           @jakejarvis
 ❯ 📱 SMS               +1 (617) 917-3737
-❯ 🔐 PGP Key           jrvs.io/pubkey (2B0C 9CF2 51E6 9A39)
+❯ 🔐 PGP Key           jrvs.io/key (2B0C 9CF2 51E6 9A39)
 ```
