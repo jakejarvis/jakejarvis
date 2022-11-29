@@ -42,8 +42,12 @@ const items = createItems([
     url: "https://jarv.is/contact/",
   },
   {
-    label: "🐦  Twitter",
-    url: "https://twitter.com/intent/user?screen_name=jakejarvis",
+    label: "📱  SMS",
+    url: "sms:+1-617-917-3737",
+  },
+  {
+    label: "🐘  Mastodon",
+    url: "https://fediverse.jarv.is/@jake",
   },
   {
     label: "🔐  PGP Key",
