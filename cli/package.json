@@ -37,7 +37,7 @@
     "@types/react": "^18.0.25",
     "@vercel/ncc": "^0.34.0",
     "cpy": "^9.0.1",
-    "eslint": "^8.28.0",
+    "eslint": "^8.34.0",
     "eslint-plugin-react": "^7.31.11",
     "ink": "^3.2.0",
     "ink-big-text": "^1.2.0",
