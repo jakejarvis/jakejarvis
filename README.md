@@ -20,7 +20,8 @@ $ npx @jakejarvis/cli
 
 ❯ 🏡 Website           jarv.is
 ❯ 📬 Email             jake@jarv.is
-❯ 🦣 Mastodon          fediverse.jarv.is/@jake
-❯ 📱 SMS               +1 (617) 917-3737
-❯ 🔐 PGP Key           jrvs.io/key (2B0C 9CF2 51E6 9A39)
+❯ 💾 GitHub            github.com/jakejarvis
+❯ 🦣 Mastodon          jarv.is/@jake
+❯ 🦋 Bluesky           bsky.app/profile/jarv.is
+❯ 🔐 Public Key        jrvs.io/pgp (2B0C 9CF2 51E6 9A39)
 ```
